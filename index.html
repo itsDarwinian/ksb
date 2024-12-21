@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soundboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <audio id="audio1" src="1.mp3"></audio>
+    <audio id="audio2" src="2.mp3"></audio>
+    <audio id="audio3" src="3.mp3"></audio>
+    <audio id="audio4" src="4.mp3"></audio>
+    <audio id="audio5" src="5.mp3"></audio>
+    <audio id="audio6" src="6.mp3"></audio>
+    <audio id="audio7" src="7.mp3"></audio>
+    <audio id="audio8" src="8.mp3"></audio>
+    <audio id="audio9" src="9.mp3"></audio>
+    <audio id="audio10" src="10.mp3"></audio>
+    <audio id="audio11" src="11.mp3"></audio>
+    <audio id="audio12" src="12.mp3"></audio>
+    <audio id="audio13" src="13.mp3"></audio>
+    <audio id="audio14" src="14.mp3"></audio>
+    <audio id="audio15" src="15.mp3"></audio>
+    <audio id="audio16" src="16.mp3"></audio>
+    <div class="soundboard">
+        <div class="category">
+            <h2>Bunker</h2>
+            <button onClick="play(0, this)" class="disabled">Envoi Morse</button>
+            <button onClick="play(0, this)" class="disabled">Marcel</button>
+            <button onClick="play(1, this)">Generator</button>
+        </div>
+        <div class="category">
+            <h2>Hôtel</h2>
+            <button onClick="play(2, this)">Galerie</button>
+            <button onClick="play(3, this)">Vandamme</button>
+            <button onClick="play(4, this)">SEEJ</button>
+            <button onClick="play(5, this)">BMW</button>
+            <button onClick="play(0, this)" class="disabled">Bombe</button>
+            <button onClick="play(0, this)" class="disabled">Cassette</button>
+        </div>
+        <div class="category">
+            <h2>Boucher</h2>
+            <button onClick="play(0, this)" class="disabled">?</button>
+        </div>
+        <div class="category">
+            <h2>Shérif</h2>
+            <button onClick="play(0, this)" class="disabled">Fusillade</button>
+            <button onClick="play(12, this)">Frère Doolin</button>
+        </div>
+        <div class="category">
+            <h2>Sous-Marin</h2>
+            <button onClick="play(13, this)">Desenfum.</button>
+            <button onClick="play(14, this)">P. moy</button>
+            <button onClick="play(15, this)">P. max</button>
+            <button onClick="play(16, this)">Boost</button>
+        </div>
+        <div class="category">
+            <h2>M Top Secret</h2>
+            <button onClick="play(0, this)" class="disabled">?</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
