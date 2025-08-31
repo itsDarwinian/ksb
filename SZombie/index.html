@@ -10,17 +10,23 @@
       background: #111;
       color: #eee;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
       margin: 0;
+      gap: 20px;
+    }
+    .wrapper {
+      width: 90%;
+      max-width: 800px;
     }
     .grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 12px;
-      width: 90%;
-      max-width: 800px;
+      /*width: 90%;
+      max-width: 800px;*/
     }
     .pad {
       background: #333;
@@ -39,26 +45,45 @@
     .pad:hover {
       background: #555;
     }
+    .volume-control {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 5px;
+      color: #fff;
+      height: 60px;
+      width: 100%;
+      /*justify-content: flex-end;*/
+    }
   </style>
 </head>
 <body>
-  <div class="grid" id="grid"></div>
+  <div class="wrapper">
+    <div class="volume-control">
+      <label for="vol4">Volume sons-enigme</label>
+      <input id="vol4" type="range" min="0" max="1" step="0.01" value="1">
+    </div>
+    <div class="grid" id="grid"></div>
+  <div class="wrapper">
 
   <script>
-    // Liste des sons en dur
+    // Liste des 20 sons en dur
     const sounds = [
       'sons/intro.mp3','sons/magie.mp3','sons/ambiance.mp3','sons/sons-enigme.mp3',
       'sons/jumpscare1.mp3','sons/jumpscare2.mp3','sons/jumpscare3.mp3','sons/esprit.mp3'
     ];
 
     // Indices (0-based) des sons qui doivent boucler
-    const loopIndices = [2, 3];
+    const loopIndices = [2,3]; // ex: son1, son6, son11 bouclent
 
     const grid = document.getElementById('grid');
+    const vol4 = document.getElementById('vol4');
+    let audioRefs = [];
 
     sounds.forEach((src, i) => {
       const btn = document.createElement('button');
       btn.className = 'pad';
+      // Nettoyer le nom (supprimer dossier et extension)
       const name = src.replace(/^.*\//, '').replace(/\.[^.]+$/, '');
       btn.textContent = name;
       const audio = new Audio(src);
@@ -72,19 +97,35 @@
           btn.classList.remove('playing');
         } else {
           audio.currentTime = 0;
+
+          // Si c'est le son 4, appliquer le volume du slider
+          if (i === 3) {
+            audio.volume = parseFloat(vol4.value);
+          }
+
           audio.play();
           btn.classList.add('playing');
+
+          // Message console si c'est le son 2
+          if (i === 1) {
+            console.log('Le son n°2 vient d\'être lancé !');
+          }
+
           if (!audio.loop) {
             audio.onended = () => btn.classList.remove('playing');
           }
         }
       });
 
+      audioRefs.push(audio);
       grid.appendChild(btn);
+    });
+
+    // Contrôle de volume spécifique au son 4 (index 3)
+    vol4.addEventListener('input', (e) => {
+      const volume = parseFloat(e.target.value);
+      audioRefs[3].volume = volume;
     });
   </script>
 </body>
 </html>
-
-
-
